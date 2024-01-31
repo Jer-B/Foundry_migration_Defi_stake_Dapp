@@ -43,5 +43,5 @@ reports/
 node_modules/
 src/src_backup/
 src/chain-info/deployments/tests.json
-src/chain-info/deployments/dev
-src/chain-info/deployments/42
+src/chain-info/deployments/dev/
+src/chain-info/deployments/42/
