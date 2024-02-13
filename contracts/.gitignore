@@ -10,9 +10,9 @@ out/
 /broadcast/
 
 
-/lib/
+lib/
 /out/
-/broadcast/
+broadcast/
 /.github/
 
 # Docs
