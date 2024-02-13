@@ -8,7 +8,7 @@
 
 # Note: This is a work in progress
 
--   <span style="color:red;">[February 2024 Update]</span> Now the front-end is fully functional with the Sepolia testnet, and react version `20+`.
+-   <span style="color:red;">**⚠️[February 2024 Update]**</span> Now the front-end is fully functional with the Sepolia testnet, and react version `20+`.
 -   [DONE] Initially made for the Kovan Network. Migration in progress to Sepolia testnet.
 -   [DONE] As Ethers.js V5 is deprecated for the use of Sepolia testnet on the front-end, I am currently updating the code to Ethers.js V6.
 -   [DONE] UseDapp is also deprecated, waiting them to update and adapt to Ethers.js V6.
@@ -96,8 +96,8 @@ forge script script/DeployDappToken.s.sol --rpc-url [YOUR RPC API KEY] --private
 ```
 
     "11155111": {
-       <span style="color:red;"> "DappToken": ["0x62B83262CE7369e8Eb9eF474BE9Ae2d307E27Eae"],</span>
-       <span style="color:red;"> "TokenFarm": ["0x6823f47e1F6618Ce00fB51382A63399f89deb0bF"]</span>
+       "DappToken": ["Your contract address"],
+       "TokenFarm": ["Your contract address"]
     },
 
 ```
@@ -166,7 +166,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 # 注意: これは作業中です
 
--   <span style="color:red;">[2024 年 2 月アップデート]</span> フロントエンドは現在、Sepolia テストネットおよび React バージョン`20+`で完全に機能しています。
+-   <span style="color:red;">**⚠️[2024 年 2 月アップデート]**</span> フロントエンドは現在、Sepolia テストネットおよび React バージョン`20+`で完全に機能しています。
 -   [完了] 最初は Kovan ネットワーク用に作成されました。現在 Sepolia テストネットへの移行が進行中です。
 -   [完了] Ethers.js V5 は Sepolia テストネットのフロントエンド使用が非推奨になったため、現在 Ethers.js V6 へのコード更新を行っています。
 -   [完了] UseDapp も非推奨になっており、Ethers.js V6 に対応するための更新を待っています。
@@ -255,8 +255,8 @@ forge script script/DeployDappToken.s.sol --rpc-url [YOUR RPC API KEY] --private
 ```
 
     "11155111": {
-       <span style="color:red;"> "DappToken": ["0x62B83262CE7369e8Eb9eF474BE9Ae2d307E27Eae"],</span>
-       <span style="color:red;"> "TokenFarm": ["0x6823f47e1F6618Ce00fB51382A63399f89deb0bF"]</span>
+       "DappToken": ["あなたのコントラクトアドレス"],
+       "TokenFarm": ["あなたのコントラクトアドレス"]
     },
 
 ```
