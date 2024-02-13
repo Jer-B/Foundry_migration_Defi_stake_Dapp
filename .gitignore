@@ -27,12 +27,20 @@ yarn-error.log*
 .env
 # vercel
 .vercel
+,gitignore
+.gitmodules
+.env
 
 # typescript
 *.tsbuildinfo
 next-env.d.ts
 
-contracts/broadcast/**/*
+/contracts/broadcast/**/*
+/contracts/lib/
+/contracts/out/
+/contracts/broadcast/
+
+
 
 # Ignore all local and related python files
 __pycache__
