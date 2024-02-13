@@ -12,7 +12,7 @@
 </p>
 <br/>
 
-# Note: This is a work in progress
+# Note: [February 2024 Update]
 
 -   <span style="color:red;">**⚠️[February 2024 Update]**</span> Now the front-end is fully functional with the Sepolia testnet, and react version `20+`.
 -   [DONE] Initially made for the Kovan Network. Migration in progress to Sepolia testnet.
@@ -170,7 +170,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 # 日本語版の README
 
-# 注意: これは作業中です
+# 注意: [2024 年 2 月アップデート]
 
 -   <span style="color:red;">**⚠️[2024 年 2 月アップデート]**</span> フロントエンドは現在、Sepolia テストネットおよび React バージョン`20+`で完全に機能しています。
 -   [完了] 最初は Kovan ネットワーク用に作成されました。現在 Sepolia テストネットへの移行が進行中です。
