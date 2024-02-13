@@ -6,6 +6,12 @@
 
 # English README 　[Jump to Japanese Version](#japanese)
 
+<br/>
+<p align="center">
+<img src="./src/images/tokenFarm_dapp.png" width="800" alt="Staking Dapp">
+</p>
+<br/>
+
 # Note: This is a work in progress
 
 -   <span style="color:red;">**⚠️[February 2024 Update]**</span> Now the front-end is fully functional with the Sepolia testnet, and react version `20+`.
