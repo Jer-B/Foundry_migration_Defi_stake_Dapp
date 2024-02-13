@@ -1,37 +1,40 @@
 //import token from main
 import React, { useEffect, useState } from "react"
 import { Token } from "../Main"
-import { useEthers, useTokenBalance } from "@usedapp/core"
 import { formatUnits } from "@ethersproject/units"
 import { BalanceMsg } from "../../components/BalanceMsg"
-import { useWriteContract, useWaitForTransactionReceipt, useAccount, useReadContract } from "wagmi"
+import { useAccount, useReadContract } from "wagmi"
 import TokenFarm from "../../chain-info/contracts/TokenFarm.json"
 import networkMapping from "../../chain-info/deployments/map.json"
-import { BigNumber, BigNumberish, ethers } from "ethers"
-import { getBalance } from "@wagmi/core"
-import { sepolia } from "@wagmi/core/chains"
-import { http, createConfig } from "@wagmi/core"
+import { BigNumberish, ethers } from "ethers"
 
-//export walletbalanceprops interface
+/**
+ * Interface defining the props for WalletBalance component.
+ * @typedef {Object} WalletBalanceProps
+ * @property {Token} token - The token object to display the balance of.
+ * @property {boolean} refreshFlag - A flag to trigger balance refresh.
+ */
 export interface WalletBalanceProps {
     token: Token
     refreshFlag: boolean
 }
 
-//export the function to show the balance of the selected token
+/**
+ * Displays the balance of a specified token for the user.
+ * @param {WalletBalanceProps} props - The properties passed to the component.
+ * @returns {React.ReactElement} The WalletBalance component.
+ */
 export const WalletBalance = ({ token, refreshFlag }: WalletBalanceProps) => {
     //grab tokens infos
-    const { image, address, name } = token
-    //grab wallet account
-    const { account } = useEthers()
-    const tokenBalance = useTokenBalance(address, account)
+    const { image, name } = token
 
+    //grab wallet account and chainId
     const { chain, address: accountAddress } = useAccount()
-
     const tokenFarmAddress = chain?.id
         ? networkMapping[chain?.id.toString()]["TokenFarm"][0]
         : ethers.constants.AddressZero
 
+    // Using wagmi hook to read the staking balance from the TokenFarm contract
     const tokenBalanceW = useReadContract({
         abi: TokenFarm.abi,
         address: tokenFarmAddress as `0x${string}`,
@@ -39,11 +42,14 @@ export const WalletBalance = ({ token, refreshFlag }: WalletBalanceProps) => {
         args: [token.address, accountAddress],
         account: accountAddress, //msg.sender
     })
+
+    // State to store the formatted token balance
     const [formattedTokenBalance, setFormattedTokenBalance] = useState<number>(0)
 
-    console.log("Staked Token address is", token.address)
-    console.log("Staked Token balance is", tokenBalanceW.data)
-    // format the number of tokenbalance, parsed in a float number otherwise it s gonna be 0
+    // console.log("Staked Token address is", token.address)
+    // console.log("Staked Token balance is", tokenBalanceW.data)
+
+    // Effect hook to update the formatted token balance when the raw balance changes, if no balance, it shows 0
     useEffect(() => {
         if (tokenBalanceW.data) {
             setFormattedTokenBalance(
@@ -59,6 +65,8 @@ export const WalletBalance = ({ token, refreshFlag }: WalletBalanceProps) => {
             )
         }
     }, [refreshFlag])
+
+    // Render the balance message with the formatted balance
     return (
         <BalanceMsg
             label={`Your unstake ${name} balance.`}

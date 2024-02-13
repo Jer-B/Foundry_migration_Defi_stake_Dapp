@@ -1,125 +1,52 @@
-// as token and supportedTokens is gonna come from main, we need to import main
+/**
+ * The `YourWallet` component provides an interface for users to interact with their token balances and stake tokens.
+ * It displays a tab for each supported token, showing the user's balance of that token and allowing them to stake tokens.
+ * The component also supports refreshing the balance display after a successful stake transaction.
+ *
+ * @component
+ * @param {Object} props - Component props
+ * @param {Array<Token>} props.supportedTokens - An array of supported token objects
+ */
+
+// as token and supportedTokens comes from main, we need to import main
 import { Token } from "../Main"
 import React, { useState } from "react"
-import { Box, Tab, styled } from "@mui/material"
-import { makeStyles } from "@mui/styles"
-import { Theme } from "@mui/material/styles"
+import { Box, Tab } from "@mui/material"
 import { TabContext, TabList, TabPanel } from "@mui/lab"
 import { WalletBalance } from "./WalletBalance"
 import { StakeForm } from "./StakeForm"
 
 interface YourWalletProps {
     supportedTokens: Array<Token>
-    //supportedTokens is gonna be an array of Tokens
+    //supportedTokens is an array of Tokens
 }
-
-// define what yourWalletProps is gonna look like
-// const useStyles = makeStyles((theme: Theme) => ({
-//     tabContent: {
-//         display: "flex",
-//         flexDirection: "column",
-//         alignItems: "center",
-//         gap: theme.spacing(4),
-//     },
-//     box: {
-//         backgroundColor: "white",
-//         borderRadius: "25px",
-//     },
-//     header: {
-//         color: "white",
-//     },
-// }))
-
-// const StyledBox = styled(Box)({
-//     backgroundColor: "white",
-//     borderRadius: "25px",
-// })
-
-// const StyledTabContent = styled("div")(({ theme }) => ({
-//     display: "flex",
-//     flexDirection: "column",
-//     alignItems: "center",
-//     gap: theme.spacing(4),
-// }))
-
-// const StyledHeader = styled("h1")(({ theme }) => ({
-//     color: "white",
-//     textAlign: "center",
-//     padding: theme.spacing(4),
-// }))
 
 // export YoutWallet.tsx, make it a function,
 // pass as parameter supportedTokens of type yourWalletProps
 export const YourWallet = ({ supportedTokens }: YourWalletProps) => {
+    // State for currently selected token index
     const [selectedTokenIndex, setSelectedTokenIndex] = useState<number>(0)
-    //StateHook for selectedtokenindex
 
+    // State to trigger balance refresh
     const [refreshBalance, setRefreshBalance] = useState(false)
 
-    // default state number 0
+    /**
+     * Handles changing the selected token tab.
+     * @param {React.ChangeEvent<{}>} event - The event object (unused here).
+     * @param {string} newValue - The new selected tab value (token index).
+     */
     const handleChange = (event: React.ChangeEvent<{}>, newValue: string) => {
         // set the state hook. parse the newvalue integer.
         setSelectedTokenIndex(parseInt(newValue))
     }
-    // const classes = useStyles()
 
+    /**
+     * Toggles the refresh balance state to trigger a refresh of the WalletBalance component.
+     */
     const handleRefreshBalance = () => {
         setRefreshBalance((prev) => !prev)
     }
     return (
-        //#############
-        // 元
-        //#############
-        // <Box>
-        //     <h1 className={classes.header}> Your Stacking information: </h1>
-        //     <Box className={classes.box}>
-        //         <TabContext value={selectedTokenIndex.toString()}>
-        //             <TabList onChange={handleChange} aria-label="Stake form tabs">
-        //                 {supportedTokens.map((token, index) => {
-        //                     return <Tab label={token.name} value={index.toString()} key={index} />
-        //                 })}
-        //             </TabList>
-        //             {supportedTokens.map((token, index) => {
-        //                 return (
-        //                     <TabPanel value={index.toString()} key={index}>
-        //                         <div className={classes.tabContent}>
-        //                             <WalletBalance token={supportedTokens[selectedTokenIndex]} />
-        //                             <StakeForm token={supportedTokens[selectedTokenIndex]} />
-        //                         </div>
-        //                     </TabPanel>
-        //                 )
-        //             })}
-        //         </TabContext>
-        //     </Box>
-        // </Box>
-
-        //#############
-        // Styled
-        //#############
-        // <StyledBox>
-        //     <StyledHeader>Your Stacking information:</StyledHeader>
-        //     <StyledBox>
-        //         <TabContext value={selectedTokenIndex.toString()}>
-        //             <TabList onChange={handleChange} aria-label="Stake form tabs">
-        //                 {supportedTokens.map((token, index) => (
-        //                     <Tab label={token.name} value={index.toString()} key={index} />
-        //                 ))}
-        //             </TabList>
-        //             {supportedTokens.map((token, index) => (
-        //                 <TabPanel value={index.toString()} key={index}>
-        //                     <StyledTabContent>
-        //                         <WalletBalance token={supportedTokens[selectedTokenIndex]} />
-        //                         <StakeForm token={supportedTokens[selectedTokenIndex]} />
-        //                     </StyledTabContent>
-        //                 </TabPanel>
-        //             ))}
-        //         </TabContext>
-        //     </StyledBox>
-        // </StyledBox>
-
-        //#############
-        // SX
-        //#############
         <Box sx={{ "& > h1": { color: "white", textAlign: "center", padding: 4 } }}>
             <h1>Your Stacking information:</h1>
             <Box sx={{ backgroundColor: "white", borderRadius: "25px" }}>

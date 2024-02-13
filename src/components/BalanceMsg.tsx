@@ -1,42 +1,23 @@
-import { makeStyles, styled } from "@mui/styles"
+/**
+ * `BalanceMsg` component is designed to display a balance message for a specific token.
+ * It shows the token label, the amount of tokens, and the token image. This component is
+ * useful for displaying balance information in a clear and visually appealing manner.
+ *
+ * @component
+ * @param {Object} props - Component props
+ * @param {string} props.label - The label for the balance message (e.g., "Your Token Balance").
+ * @param {number} props.amount - The amount of the token.
+ * @param {string} props.tokenImgSrc - The source URL for the token's image.
+ * @example
+ * return (
+ *   <BalanceMsg
+ *     label="Your Token Balance"
+ *     amount={100}
+ *     tokenImgSrc="/path/to/token/image.png"
+ *   />
+ * )
+ */
 import Box from "@mui/material/Box"
-import { Theme } from "@mui/material/styles"
-
-//#############
-// 元
-//#############
-// const useStyles = makeStyles((theme: Theme) => ({
-//     container: {
-//         display: "inline-grid",
-//         gridTemplateColumns: "auto auto auto",
-//         gap: theme.spacing(1),
-//         alignItems: "center",
-//     },
-//     tokenImg: {
-//         width: "32px",
-//     },
-//     amount: {
-//         fontWeight: 700,
-//     },
-// }))
-
-//#############
-// Styled
-//#############
-// const Container = styled(Box)(({ theme }) => ({
-//     display: "inline-grid",
-//     gridTemplateColumns: "auto auto auto",
-//     // gap: theme.spacing(1),
-//     alignItems: "center",
-// }))
-
-// const TokenImage = styled("img")({
-//     width: "32px",
-// })
-
-// const Amount = styled("div")(({ theme }) => ({
-//     fontWeight: 700,
-// }))
 
 interface BalanceMsgProps {
     label: string
@@ -45,30 +26,7 @@ interface BalanceMsgProps {
 }
 
 export const BalanceMsg = ({ label, amount, tokenImgSrc }: BalanceMsgProps) => {
-    // const classes = useStyles()
-
     return (
-        //#############
-        // 元
-        //#############
-        // <div className={classes.container}>
-        //     <div>{label}</div>
-        //     <div className={classes.amount}>{amount}</div>
-        //     <img className={classes.tokenImg} src={tokenImgSrc} alt="token logo" />
-        // </div>
-
-        //#############
-        // Styled
-        //#############
-        // <Container>
-        //     <div>{label}</div>
-        //     <Amount>{amount}</Amount>
-        //     <TokenImage src={tokenImgSrc} alt="token logo" />
-        // </Container>
-
-        //#############
-        // SX
-        //#############
         <Box
             sx={{
                 display: "inline-grid",

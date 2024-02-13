@@ -1,70 +1,23 @@
-// import usethers
-import { useEthers } from "@usedapp/core"
-// import material ui package to use its styling
-import { Button, Box, styled } from "@mui/material"
-import { makeStyles } from "@mui/styles"
-import { Theme } from "@mui/material/styles"
+/**
+ * `Header` component provides a user interface for connecting a wallet. It utilizes
+ * the `ConnectButton` from the `@rainbow-me/rainbowkit` library to facilitate
+ * blockchain wallet connections in a seamless and intuitive manner. The component is styled
+ * to position the connect button at the top right corner of the application.
+ *
+ * @component
+ * @example
+ * return (
+ *   <Header />
+ * )
+ */
+import { Box } from "@mui/material"
 import { ConnectButton } from "@rainbow-me/rainbowkit"
-
-// make a global constant for the style
-// const useStyles = makeStyles((theme: Theme) => ({
-//     // do a container style which will be affected to the the button
-//     container: {
-//         //style. separated by comas
-//         padding: theme.spacing(4),
-//         display: "flex",
-//         justifyContent: "flex-end",
-//         gap: theme.spacing(1),
-//     },
-// }))
-
-// const StyledContainer = styled(Box)(({ theme }) => ({
-//     padding: theme.spacing(4),
-//     display: "flex",
-//     justifyContent: "flex-end",
-//     gap: theme.spacing(1),
-// }))
 
 // export a constant variable called header, which is a function doing whats in brackets
 export const Header = () => {
     //affect the container to the export
-    // const classes = useStyles()
 
-    const { account, activateBrowserWallet, deactivate } = useEthers()
-    // constant variable checking if connected or not
-    const isConnected = account !== undefined
-    // a way to use id statement , if account is not undefined then account is connected.
-    // if connected return a button to connect to
     return (
-        // ? -> question mark is a tertiary operator meaning if it is True we do one thing,
-        //if it is False we do something else at the colon mark ->  :
-        // if connected there is a button for disconnection
-        // if not show a connect button
-        //wrap the whole into the styled container from above
-        // <div className={classes.container}>
-        //     {isConnected ? (
-        //         <Button variant="contained" color="secondary" onClick={deactivate}>
-        //             Disconnect
-        //         </Button>
-        //     ) : (
-        //         <Button color="primary" variant="contained" onClick={() => activateBrowserWallet()}>
-        //             Connect
-        //         </Button>
-        //     )}
-        // </div>
-
-        // <StyledContainer>
-        //     {isConnected ? (
-        //         <Button variant="contained" color="secondary" onClick={deactivate}>
-        //             Disconnect
-        //         </Button>
-        //     ) : (
-        //         <Button color="primary" variant="contained" onClick={() => activateBrowserWallet()}>
-        //             Connect
-        //         </Button>
-        //     )}
-        // </StyledContainer>
-
         <Box
             sx={{
                 padding: (theme) => theme.spacing(4),
@@ -73,15 +26,6 @@ export const Header = () => {
                 gap: (theme) => theme.spacing(1),
             }}
         >
-            {/* {isConnected ? (
-                <Button variant="contained" color="secondary" onClick={deactivate}>
-                    Disconnect
-                </Button>
-            ) : (
-                <Button color="primary" variant="contained" onClick={() => activateBrowserWallet()}>
-                    Connect
-                </Button>
-            )} */}
             <ConnectButton />
         </Box>
     )

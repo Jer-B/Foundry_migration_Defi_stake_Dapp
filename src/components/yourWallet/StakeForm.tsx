@@ -1,208 +1,44 @@
-// import React, { useState, useEffect } from "react"
-// import { Token } from "../Main"
-// import { Button, Input, CircularProgress, Snackbar } from "@mui/material"
-// import Alert from "@mui/material/Alert"
-// import { useStakeTokens } from "../../hooks"
-// import { utils } from "ethers"
-
-// export interface StakeFormProps {
-//     token: Token
-// }
-
-// export const StakeForm: React.FC<StakeFormProps> = ({ token }) => {
-//     const { address: tokenAddress, name } = token
-//     const [amount, setAmount] = useState<string>("")
-//     const [showErc20ApprovalSuccess, setShowErc20ApprovalSuccess] = useState(false)
-//     const [showStakeTokenSuccess, setShowStakeTokenSuccess] = useState(false)
-
-//     const { approve, state: approveAndStakeState } = useStakeTokens(tokenAddress)
-
-//     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-//         const newAmount = event.target.value
-//         setAmount(newAmount)
-//     }
-
-//     const handleStakeSubmit = () => {
-//         const amountAsWei = utils.parseEther(amount)
-//         console.log("Approving amount:", amountAsWei.toString()) // Add logging here
-//         approve(amountAsWei.toString())
-//     }
-
-//     const isMining = approveAndStakeState.approve.isPending || approveAndStakeState.stake.isPending
-
-//     useEffect(() => {
-//         console.log("approveAndStakeState changed:", approveAndStakeState) // Add logging here
-//         if (approveAndStakeState.approve.isSuccess) {
-//             setShowErc20ApprovalSuccess(true)
-//             setShowStakeTokenSuccess(false)
-//         } else if (approveAndStakeState.stake.isSuccess) {
-//             setShowErc20ApprovalSuccess(false)
-//             setShowStakeTokenSuccess(true)
-//         }
-//     }, [approveAndStakeState])
-
-//     const handleCloseSnack = () => {
-//         setShowErc20ApprovalSuccess(false)
-//         setShowStakeTokenSuccess(false)
-//     }
-
-//     return (
-//         <>
-//             <div style={{ display: "flex", alignItems: "center" }}>
-//                 <div style={{ marginRight: "8px" }}>Amount:</div>
-//                 <Input placeholder="Amount to stake" onChange={handleInputChange} sx={{ mr: 2 }} />
-//                 <Button
-//                     onClick={handleStakeSubmit}
-//                     color="primary"
-//                     variant="contained"
-//                     size="large"
-//                     disabled={isMining}
-//                 >
-//                     {isMining ? <CircularProgress size={26} /> : "Stake"}
-//                 </Button>
-//             </div>
-//             <Snackbar
-//                 open={showErc20ApprovalSuccess}
-//                 autoHideDuration={5000}
-//                 onClose={handleCloseSnack}
-//             >
-//                 <Alert onClose={handleCloseSnack} severity="success">
-//                     ERC-20 use approved! Waiting confirmation for staking.
-//                 </Alert>
-//             </Snackbar>
-//             <Snackbar
-//                 open={showStakeTokenSuccess}
-//                 autoHideDuration={5000}
-//                 onClose={handleCloseSnack}
-//             >
-//                 <Alert onClose={handleCloseSnack} severity="success">
-//                     Tokens staked with success!
-//                 </Alert>
-//             </Snackbar>
-//         </>
-//     )
-// }
-
-// import React, { useState, useEffect } from "react"
-// import { Token } from "../Main"
-// import { Button, Input, CircularProgress, Snackbar } from "@mui/material"
-// import Alert from "@mui/material/Alert"
-// import { useStakeTokens } from "../../hooks"
-// import { utils } from "ethers"
-
-// export interface StakeFormProps {
-//     token: Token
-// }
-
-// export const StakeForm: React.FC<StakeFormProps> = ({ token }) => {
-//     const { address: tokenAddress, name } = token
-//     const [amount, setAmount] = useState<string>("")
-
-//     const [showErc20ApprovalSuccess, setShowErc20ApprovalSuccess] = useState(false)
-//     const [showStakeTokenSuccess, setShowStakeTokenSuccess] = useState(false)
-
-//     const { approve, stake, state } = useStakeTokens(tokenAddress)
-
-//     const handleApprove = () => {
-//         approve(amount)
-//         setShowErc20ApprovalSuccess(false)
-//         setShowStakeTokenSuccess(false)
-//     }
-
-//     const handleStake = () => {
-//         setShowErc20ApprovalSuccess(false)
-//         setShowStakeTokenSuccess(false)
-//         stake(amount)
-//     }
-
-//     useEffect(() => {
-//         if (state.approve.isSuccess) {
-//             setShowErc20ApprovalSuccess(true)
-//             setTimeout(() => setShowErc20ApprovalSuccess(false), 6000)
-//             setShowStakeTokenSuccess(false)
-//         } else if (state.stake.isSuccess) {
-//             setShowErc20ApprovalSuccess(false)
-//             setTimeout(() => setShowErc20ApprovalSuccess(false), 6000)
-//             setShowStakeTokenSuccess(true)
-//         }
-//     }, [state])
-
-//     // const handleApprove = () => {
-//     //     const stakeAmount = amount.trim() === "" ? "0" : amount
-//     //     approve(stakeAmount)
-//     // }
-
-//     // const handleStake = () => {
-//     //     const stakeAmount = amount.trim() === "" ? "0" : amount
-//     //     stake(stakeAmount)
-//     // }
-
-//     // useEffect(() => {
-//     //     if (state.approve.isSuccess) {
-//     //         setShowErc20ApprovalSuccess(true)
-//     //         setShowStakeTokenSuccess(false)
-//     //     } else if (state.stake.isSuccess) {
-//     //         setShowErc20ApprovalSuccess(false)
-//     //         setShowStakeTokenSuccess(true)
-//     //     }
-//     // }, [state.stake.isSuccess])
-
-//     return (
-//         <div>
-//             {/* <h2>{name}</h2> */}
-//             <Input
-//                 value={amount}
-//                 onChange={(event) => setAmount(event.target.value)}
-//                 placeholder="Amount to stake"
-//                 type="number"
-//                 inputProps={{ min: "0", step: "any" }}
-//                 style={{ color: "red" }}
-//             />
-//             <Button
-//                 color="primary"
-//                 variant="contained"
-//                 size="large"
-//                 onClick={handleApprove}
-//                 style={{ marginRight: "10px" }}
-//             >
-//                 Approve
-//             </Button>
-//             <Button color="primary" variant="contained" size="large" onClick={handleStake}>
-//                 Stake Tokens
-//             </Button>
-//             <Snackbar open={showErc20ApprovalSuccess} autoHideDuration={6000}>
-//                 <Alert onClose={() => setShowErc20ApprovalSuccess(false)} severity="success">
-//                     ERC20 Approval Successful
-//                 </Alert>
-//             </Snackbar>
-//             <Snackbar open={showStakeTokenSuccess} autoHideDuration={6000}>
-//                 <Alert onClose={() => setShowStakeTokenSuccess(false)} severity="success">
-//                     Staking Successful
-//                 </Alert>
-//             </Snackbar>
-//         </div>
-//     )
-// }
-
 import React, { useState, useEffect } from "react"
 import { Token } from "../Main"
-import { Button, Input, CircularProgress, Snackbar } from "@mui/material"
+import { Button, Input, Snackbar } from "@mui/material"
 import Alert from "@mui/material/Alert"
 import { useStakeTokens } from "../../hooks"
-import { utils } from "ethers"
+
+/**
+ * Properties expected by the StakeForm component.
+ * @typedef {Object} StakeFormProps
+ * @property {Token} token - Details of the token to be staked.
+ * @property {() => void} onStakeSuccess - Callback function to invoke upon successful staking.
+ */
 
 export interface StakeFormProps {
     token: Token
     onStakeSuccess: () => void
 }
 
+/**
+ * A form component for staking tokens.
+ * Allows users to approve and stake tokens into the staking contract.
+ *
+ * @param {StakeFormProps} props - The properties passed to the component.
+ * @returns {React.ReactElement} A form for staking tokens.
+ */
 export const StakeForm: React.FC<StakeFormProps> = ({ token, onStakeSuccess }) => {
-    const { address: tokenAddress, name } = token
+    const { address: tokenAddress } = token
     const [amount, setAmount] = useState<string>("")
+
+    // State to manage the display of the approval success alert.
     const [showErc20ApprovalSuccess, setShowErc20ApprovalSuccess] = useState(false)
+    // State to manage the display of the staking success alert.
     const [showStakeTokenSuccess, setShowStakeTokenSuccess] = useState(false)
+
+    // Custom hook to interact with the staking contract.
     const { approve, stake, state } = useStakeTokens(tokenAddress)
 
+    /**
+     * Handles the approval and staking of tokens.
+     * Calls the approve function from the useStakeTokens hook with the amount to stake.
+     */
     const handleApprove = () => {
         const stakeAmount = amount.trim() === "" ? "0" : amount
         approve(stakeAmount)
@@ -213,51 +49,7 @@ export const StakeForm: React.FC<StakeFormProps> = ({ token, onStakeSuccess }) =
         stake(stakeAmount)
     }
 
-    // useEffect(() => {
-    //     if (state.approve.isSuccess) {
-    //         setShowErc20ApprovalSuccess(true)
-    //         setTimeout(() => setShowErc20ApprovalSuccess(false), 6000)
-    //         setShowStakeTokenSuccess(false)
-    //     } else if (state.stake.isSuccess) {
-    //         setShowErc20ApprovalSuccess(false)
-    //         setTimeout(() => setShowErc20ApprovalSuccess(false), 6000)
-    //         setShowStakeTokenSuccess(true)
-    //     }
-    //     // }, [state])
-    // }, [state.approve.isSuccess, state.stake.isSuccess])
-    //========
-    // useEffect(() => {
-    //     if (state.approve.isSuccess) {
-    //         setShowErc20ApprovalSuccess(true)
-    //         setTimeout(() => setShowErc20ApprovalSuccess(false), 6000)
-    //         setShowStakeTokenSuccess(false)
-    //     } else if (state.stake.isSuccess) {
-    //         setShowErc20ApprovalSuccess(false)
-    //         setTimeout(() => setShowStakeTokenSuccess(false), 6000)
-    //         setShowStakeTokenSuccess(true)
-    //     }
-    // }, [state.approve.isSuccess, state.stake.isSuccess])
-    //==========
-    // const handleApprove = () => {
-    //     const stakeAmount = amount.trim() === "" ? "0" : amount
-    //     approve(stakeAmount)
-    // }
-
-    // const handleStake = () => {
-    //     const stakeAmount = amount.trim() === "" ? "0" : amount
-    //     stake(stakeAmount)
-    // }
-
-    // useEffect(() => {
-    //     if (state.approve.isSuccess) {
-    //         setShowErc20ApprovalSuccess(true)
-    //         setShowStakeTokenSuccess(false)
-    //     } else if (state.stake.isSuccess) {
-    //         setShowErc20ApprovalSuccess(false)
-    //         setShowStakeTokenSuccess(true)
-    //     }
-    // }, [state.stake.isSuccess])
-
+    // useEffect to show ERC20 approval success message
     useEffect(() => {
         // Trigger the alert for approval success
         if (state.approve.isSuccess) {
@@ -268,6 +60,7 @@ export const StakeForm: React.FC<StakeFormProps> = ({ token, onStakeSuccess }) =
         }
     }, [state.approve.isSuccess])
 
+    // useEffect to show staking success message and invoke onStakeSuccess callback
     useEffect(() => {
         // Trigger the alert for staking success
         if (state.stake.isSuccess) {
@@ -281,7 +74,6 @@ export const StakeForm: React.FC<StakeFormProps> = ({ token, onStakeSuccess }) =
 
     return (
         <div>
-            {/* <h2>{name}</h2> */}
             <Input
                 value={amount}
                 onChange={(event) => setAmount(event.target.value)}
