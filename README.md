@@ -51,7 +51,7 @@ forge init
 -   Install dependencies
 
 ```bash
-forge install OpenZeppelin/openzeppelin-contracts@v4.2.0 --no-commit
+forge install OpenZeppelin/openzeppelin-contracts@v4.2.0 --no-commit && forge install @chainlink=smartcontractkit/chainlink-brownie-contracts@0.2.1 --no-commit
 ```
 
 #### Contracts deployment
@@ -160,7 +160,7 @@ forge init
 -   依存関係のインストール
 
 ```bash
-forge install OpenZeppelin/openzeppelin-contracts@v4.2.0 --no-commit
+forge install OpenZeppelin/openzeppelin-contracts@v4.2.0 --no-commit && forge install @chainlink=smartcontractkit/chainlink-brownie-contracts@0.2.1 --no-commit
 ```
 
 #### コントラクトのデプロイメント
