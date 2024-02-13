@@ -9,6 +9,12 @@ out/
 /broadcast/**/dry-run/
 /broadcast/
 
+
+/lib/
+/out/
+/broadcast/
+/.github/
+
 # Docs
 docs/
 lib/
