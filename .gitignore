@@ -35,10 +35,10 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-/contracts/broadcast/**/*
-/contracts/lib/
-/contracts/out/
-/contracts/broadcast/
+contracts/broadcast/**/*
+contracts/lib/
+contracts/out/
+contracts/broadcast/
 
 
 
