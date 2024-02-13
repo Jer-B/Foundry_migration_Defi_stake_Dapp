@@ -170,6 +170,12 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 # 日本語版の README
 
+<br/>
+<p align="center">
+<img src="./src/images/tokenFarm_dapp.png" width="800" alt="Staking Dapp">
+</p>
+<br/>
+
 # 注意: [2024 年 2 月アップデート]
 
 -   <span style="color:red;">**⚠️[2024 年 2 月アップデート]**</span> フロントエンドは現在、Sepolia テストネットおよび React バージョン`20+`で完全に機能しています。
